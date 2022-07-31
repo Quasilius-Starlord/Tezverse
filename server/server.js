@@ -14,16 +14,13 @@ const initializeGame = require('./GameLogic').initializeGame;
 
 
 io.on('connection', client => {
-    console.log('new client connected', client.id);
 
     client.emit('connection', client.id);
 
     initializeGame(io, client);
-    // console.log(typeof(initializeGame))
 
     client.on('getConn', data => {
         const room = io.sockets.adapter.rooms;
-        // console.log('looking up world', room);
     })
 
     

@@ -15,7 +15,6 @@ initializeGame = (io, client) => {
 
     gameSocket.on('move',data => {
         // const move = move.gameId
-        console.log(data, 'move')
         switch (data.gameName) {
             case 'chess':
                 io.in(data.worldID).emit('move-chess', data);
@@ -29,7 +28,6 @@ initializeGame = (io, client) => {
 
     gameSocket.on('player-move',data => {
         // const move = move.gameId
-        console.log(data, 'player-move')
         io.in(data.worldID).emit('player-move', data);
     });
 
@@ -42,13 +40,11 @@ initializeGame = (io, client) => {
         const worldID = uuid();
         //create a room and add this client to that room
         client.join(worldID);
-        console.log('world generated for', client.id, 'is', worldID);
         LEDGER[worldID] = new Map();
         TRANSFER[worldID] = new Set();
         for( const game in gamesAvailable ){
             LEDGER[worldID][gamesAvailable[game]] = new Set();
         }
-        // console.log(LEDGER);
         client.emit('world-created',{worldID:worldID});
         
     });
@@ -76,20 +72,15 @@ initializeGame = (io, client) => {
                 default:
                     break;
             }
-            // if(LEDGER[data.worldID][data.gameName].siz)
         }else{
-            console.log(data.gameLeft);
-            // console.log(typeof(LEDGER[data.worldID][data.gameLeft]));
             LEDGER[data.worldID][data.gameLeft].delete(client.id);
         }
-        // console.log(LEDGER);
         io.in(data.worldID).emit('game-selected', data);
     });
 
     client.on('payment-done', data => {
         //switch statement
         //and transfer const update
-        console.log(TRANSFER)
         TRANSFER[data.worldID].add(client.id);
         switch (data.gameName) {
             case 'chess':
@@ -110,10 +101,8 @@ initializeGame = (io, client) => {
     
     // on player wish to join a room
     client.on('join-world', data => {
-        // console.log(client.id, 'request to join world', data.worldID);
         
         const room = io.sockets.adapter.rooms.get(data.worldID);
-        // console.log('all rooms', io.sockets.adapter.rooms.get(data.worldID));
         if(room === undefined){
             client.emit('error', "Room Does not Exist!");
             return;
