@@ -1,0 +1,28 @@
+.dice {
+width: 100px;
+height: 100px;
+}
+
+.img-1{
+background-image: url('/assets/dice1.png');
+}
+
+.img-2{
+background-image: url('/assets/dice2.png');
+}
+
+.img-3{
+background-image: url('/assets/dice3.png');
+}
+
+.img-4{
+background-image: url('/assets/dice4.png');
+}
+
+.img-5{
+background-image: url('/assets/dice5.png');
+}
+
+.img-6{
+background-image: url('/assets/dice6.png');
+}
