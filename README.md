@@ -3,7 +3,7 @@
 ### Install temple tezos wallet browser extention on your browser
 ### Follow below steps and start backend followed by frontend
 
-**Project Runs on Jakartanet Test Network. Make sure to have switched to specified test network in your temple tezos wallet before use**
+### Project Runs on `Jakartanet Test Network`. Make sure to have switched to specified test network in your temple tezos wallet before use
 
 ## Steps to start Backend.
 
